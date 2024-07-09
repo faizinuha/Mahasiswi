@@ -1,92 +1,77 @@
 @extends('layouts.app')
 
 @section('content')
-    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/table.css') }}"> --}}
-
     <style>
-        /* Overrides for Tailwind CSS */
-
-        /* Form fields */
-        .dataTables_wrapper select,
-        .dataTables_wrapper .dataTables_filter input {
-            color: #4a5568; /* text-gray-700 */
-            padding-left: 15px; /* pl-4 */
-            padding-right: 1rem; /* pr-4 */
-            padding-top: .5rem; /* pt-2 */
-            padding-bottom: .5rem; /* pb-2 */
-            line-height: 1.25; /* leading-tight */
-            border-width: 2px; /* border-2 */
-            border-radius: .25rem;
-            border-color: #edf2f7; /* border-gray-200 */
-            background-color: #edf2f7; /* bg-gray-200 */
-            margin-left: 1rem; /* Add left margin */
+        /* Consistent Button Styles */
+        .warna {
+            background-color: #4CAF50;
+            color: white;
+            padding: 11px 16px;
+            border-radius: 4px;
+            text-decoration: none;
         }
 
-        /* Row Hover */
-        table.dataTable.hover tbody tr:hover,
-        table.dataTable.display tbody tr:hover {
-            background-color: #ebf4ff; /* bg-indigo-100 */
+        .warna:hover {
+            background-color: #45a049;
         }
 
-        /* Pagination Buttons */
-        .dataTables_wrapper .dataTables_paginate .paginate_button {
-            font-weight: 700; /* font-bold */
-            border-radius: .25rem; /* rounded */
-            border: 1px solid transparent; /* border border-transparent */
+        .warna-delete {
+            background-color: #f44336;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
         }
 
-        /* Pagination Buttons - Current selected */
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            color: #fff !important; /* text-white */
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06); /* shadow */
-            font-weight: 700; /* font-bold */
-            border-radius: .25rem; /* rounded */
-            background: #667eea !important; /* bg-indigo-500 */
-            border: 1px solid transparent; /* border border-transparent */
+        .warna-delete:hover {
+            background-color: #da190b;
         }
 
-        /* Pagination Buttons - Hover */
-        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-            color: #fff !important; /* text-white */
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06); /* shadow */
-            font-weight: 700; /* font-bold */
-            border-radius: .25rem; /* rounded */
-            background: #667eea !important; /* bg-indigo-500 */
-            border: 1px solid transparent; /* border border-transparent */
+        /* Alert Style */
+        .alert {
+            margin-top: 20px;
         }
 
-        /* Add padding to bottom border */
-        table.dataTable.no-footer {
-            border-bottom: 1px solid #e2e8f0; /* border-b-1 border-gray-300 */
-            margin-top: 0.75em;
-            margin-bottom: 0.75em;
+        /* Table Styles */
+        table {
+            width: 100%;
+            text-align: left;
         }
 
-        /* Change color of responsive icon */
-        table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
-            background-color: #667eea !important; /* bg-indigo-500 */
+        thead {
+            background-color: #6b7280;
+            color: #7f97c6;
         }
 
-        /* Additional spacing */
+        th, td {
+            padding: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        th {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* tr:hover {
+            background-color: #f1f5f9;
+        } */
+
+        /* Container and Image Styles */
         .container {
-            margin-top: 2rem; /* Adjust top margin for better spacing */
+            margin-top: 2rem;
         }
 
         .table-container {
-            margin-top: 2rem; /* Adjust top margin for better spacing */
-            padding: 2rem; /* Add padding for better spacing */
+            margin-top: 2rem;
+            padding: 2rem;
         }
 
-        .btn-group {
-            margin-top: 1rem; /* Add top margin for button group */
-        }
-
-        .success-message {
-            margin-top: 1.5rem; /* Add top margin for success message */
+        .foto-mahasiswa {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
         }
     </style>
 
@@ -96,42 +81,42 @@
                 <h2 class="text-center text-2xl font-bold">Daftar Mahasiswa</h2>
             </div>
             <div class="mt-4">
-                <a class="bg-green-500 text-white py-2 px-4 rounded mt-5" href="{{ route('mahasiswas.create') }}">Tambah Mahasiswa</a>
+                <a class="warna rounded mt-5 mb-4 transition duration-300 ease-in-out" href="{{ route('mahasiswas.create') }}">Tambah Mahasiswa</a>
             </div>
         </div>
 
         @if ($message = Session::get('success'))
-            <div class="success-message bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+            <div class="alert bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
                 <span class="block sm:inline">{{ $message }}</span>
             </div>
         @endif
 
         <div class="table-container overflow-x-auto bg-white rounded-lg shadow-md">
-            <table id="example" class="table-auto min-w-full border border-gray-300">
-                <thead class="bg-gray-200">
+            <table class="table-fixed text-left">
+                <thead>
                     <tr>
-                        <th class="py-2 px-4 border border-gray-300">No</th>
-                        <th class="py-2 px-4 border border-gray-300">Nama</th>
-                        <th class="py-2 px-4 border border-gray-300">NIM</th>
-                        <th class="py-2 px-4 border border-gray-300">Jurusan</th>
-                        <th class="py-2 px-4 border border-gray-300">Organisasi</th>
-                        <th class="py-2 px-4 border border-gray-300" width="280px">Aksi</th>
+                        <th class="py-2 px-4 border">No</th>
+                        <th class="py-2 px-4 border">Nama</th>
+                        <th class="py-2 px-4 border">NIM</th>
+                        <th class="py-2 px-4 border">Jurusan</th>
+                        <th class="py-2 px-4 border">Organisasi</th>
+                        <th class="py-2 px-4 border">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($mahasiswas as $mahasiswa)
                         <tr>
-                            <td class="py-2 px-4 border border-gray-300">{{ $loop->iteration }}</td>
-                            <td class="py-2 px-4 border border-gray-300">{{ $mahasiswa->nama }}</td>
-                            <td class="py-2 px-4 border border-gray-300">{{ $mahasiswa->nim }}</td>
-                            <td class="py-2 px-4 border border-gray-300">{{ $mahasiswa->Department->name }}</td>
-                            <td class="py-2 px-4 border border-gray-300">{{ $mahasiswa->organination->name }}</td>
-                            <td class="py-2 px-4 border border-gray-300">
-                                <a class="bg-blue-500 text-white py-2 px-4 rounded" href="{{ route('mahasiswas.edit', $mahasiswa->id) }}"><i class='bx bxs-eyedropper'></i></a>
+                            <td class="py-2 px-4 border text-center">{{ $loop->iteration }}</td>
+                            <td class="py-2 px-4 border text-center">{{ $mahasiswa->nama }}</td>
+                            <td class="py-2 px-4 border text-center">{{ $mahasiswa->nim }}</td>
+                            <td class="py-2 px-4 border text-center">{{ $mahasiswa->Department->nama }}</td>
+                            <td class="py-2 px-4 border text-center">{{ $mahasiswa->organination->name }}</td>
+                            <td class="py-2 px-4 border text-center">
+                                <a class="warna rounded transition duration-300 ease-in-out" href="{{ route('mahasiswas.edit', $mahasiswa->id) }}">Edit</a>
                                 <form action="{{ route('mahasiswas.destroy', $mahasiswa->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');"><i class='bx bx-trash-alt'></i></button>
+                                    <button type="submit" class="warna-delete rounded transition duration-300 ease-in-out" onclick="alert()">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -140,17 +125,41 @@
             </table>
         </div>
     </div>
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script>
-        $(document).ready(function() {
-            var table = $('#example').DataTable({
-                    responsive: true
-                })
-                .columns.adjust()
-                .responsive.recalc();
-        });
+        function alert() {
+            const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: "btn btn-success",
+    cancelButton: "btn btn-danger"
+  },
+  buttonsStyling: false
+});
+swalWithBootstrapButtons.fire({
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonText: "Yes, delete it!",
+  cancelButtonText: "No, cancel!",
+  reverseButtons: true
+}).then((result) => {
+  if (result.isConfirmed) {
+    swalWithBootstrapButtons.fire({
+      title: "Deleted!",
+      text: "Your file has been deleted.",
+      icon: "success"
+    });
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    swalWithBootstrapButtons.fire({
+      title: "Cancelled",
+      text: "Your imaginary file is safe :)",
+      icon: "error"
+    });
+  }
+});
+        }
     </script>
 @endsection

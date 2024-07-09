@@ -4,33 +4,31 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use App\Models\Department;
-use App\Models\Organination; // Ensure this matches your actual model name
+use App\Models\Organination; // Pastikan ini sesuai dengan nama model yang benar
 use Illuminate\Http\Request;
 
 class MahasiswaController extends Controller
 {
     public function index()
     {
-        $mahasiswas = Mahasiswa::with('department', 'organination')->get(); // Note the lowercase names
-        // dd($mahasiswas);
+        $mahasiswas = Mahasiswa::with('department', 'organination')->get();
         return view('mahasiswa.index', compact('mahasiswas'));
     }
 
     public function create()
     {
-        $departments = Department::all(); // Changed to plural and lowercase
-        $organinations = Organination::all(); // Changed to plural and lowercase
-        return view('mahasiswa.create', compact('departments', 'organinations')); // Match the variable names
+        $departments = Department::all();
+        $organinations = Organination::all();
+        return view('mahasiswa.create', compact('departments', 'organinations'));
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
         $request->validate([
             'nama' => 'required|string|max:255',
             'nim' => 'required|string|max:20|unique:mahasiswas',
-            'alamat' => 'required|string|max:25',
-            'no_telp' => 'required|string|max:12',
+            'alamat' => 'required|string|max:255',
+            'no_telp' => 'required|string|max:20',
             'department_id' => 'required',
             'organination_id' => 'required',
         ]);
@@ -48,10 +46,9 @@ class MahasiswaController extends Controller
 
     public function edit(Mahasiswa $mahasiswa)
     {
-        $departments = Department::all(); // Changed to plural and lowercase
-        $organinations = Organination::all(); // Changed to plural and lowercase
-        return view('mahasiswa.edit', compact('mahasiswa', 'departments', 'organinations'));// Match the variable names
-        // return redirect()->route('mahasiswas.index')->with('success', 'Mahasiwa Berhasil di Update');
+        $departments = Department::all();
+        $organinations = Organination::all();
+        return view('mahasiswa.edit', compact('mahasiswa', 'departments', 'organinations'));
     }
 
     public function update(Request $request, Mahasiswa $mahasiswa)
@@ -59,14 +56,16 @@ class MahasiswaController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'nim' => 'required|string|max:20|unique:mahasiswas,nim,' . $mahasiswa->id,
-            'alamat' => 'required|string|max:25',
-            'no_telp' => 'required|string|max:12',
+            'alamat' => 'required|string|max:255',
+            'no_telp' => 'required|string|max:20',
             'department_id' => 'required',
-            'organisasi_id' => 'required',
+            'organination_id' => 'required',
         ]);
 
         $mahasiswa->update($request->all());
-        return redirect()->route('mahasiswas.index')->with('success', 'Mahasiswa berhasil diperbarui.');
+
+        return redirect()->route('mahasiswas.index')
+            ->with('success', 'Mahasiswa berhasil diperbarui.');
     }
 
     public function destroy(Mahasiswa $mahasiswa)

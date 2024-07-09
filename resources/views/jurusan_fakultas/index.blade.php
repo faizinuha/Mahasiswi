@@ -1,92 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
-    <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-    {{-- <link rel="stylesheet" href="{{ asset('assets/css/table.css') }}"> --}}
-
     <style>
-        /* Overrides for Tailwind CSS */
-
-        /* Form fields */
-        .dataTables_wrapper select,
-        .dataTables_wrapper .dataTables_filter input {
-            color: #4a5568; /* text-gray-700 */
-            padding-left: 15px; /* pl-4 */
-            padding-right: 1rem; /* pr-4 */
-            padding-top: .5rem; /* pt-2 */
-            padding-bottom: .5rem; /* pb-2 */
-            line-height: 1.25; /* leading-tight */
-            border-width: 2px; /* border-2 */
-            border-radius: .25rem;
-            border-color: #edf2f7; /* border-gray-200 */
-            background-color: #edf2f7; /* bg-gray-200 */
-            margin-left: 1rem; /* Add left margin */
+        /* Consistent Button Styles */
+        .warna {
+            background-color: #4CAF50;
+            color: white;
+            padding: 11px 16px;
+            border-radius: 4px;
+            text-decoration: none;
         }
 
-        /* Row Hover */
-        table.dataTable.hover tbody tr:hover,
-        table.dataTable.display tbody tr:hover {
-            background-color: #ebf4ff; /* bg-indigo-100 */
+        .warna:hover {
+            background-color: #45a049;
         }
 
-        /* Pagination Buttons */
-        .dataTables_wrapper .dataTables_paginate .paginate_button {
-            font-weight: 700; /* font-bold */
-            border-radius: .25rem; /* rounded */
-            border: 1px solid transparent; /* border border-transparent */
+        .warna-delete {
+            background-color: #f44336;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
         }
 
-        /* Pagination Buttons - Current selected */
-        .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-            color: #fff !important; /* text-white */
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06); /* shadow */
-            font-weight: 700; /* font-bold */
-            border-radius: .25rem; /* rounded */
-            background: #667eea !important; /* bg-indigo-500 */
-            border: 1px solid transparent; /* border border-transparent */
+        .warna-delete:hover {
+            background-color: #da190b;
         }
 
-        /* Pagination Buttons - Hover */
-        .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-            color: #fff !important; /* text-white */
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06); /* shadow */
-            font-weight: 700; /* font-bold */
-            border-radius: .25rem; /* rounded */
-            background: #667eea !important; /* bg-indigo-500 */
-            border: 1px solid transparent; /* border border-transparent */
+        /* Alert Style */
+        .alert {
+            margin-top: 20px;
         }
 
-        /* Add padding to bottom border */
-        table.dataTable.no-footer {
-            border-bottom: 1px solid #e2e8f0; /* border-b-1 border-gray-300 */
-            margin-top: 0.75em;
-            margin-bottom: 0.75em;
+        /* Table Styles */
+        table {
+            width: 100%;
+            text-align: left;
         }
 
-        /* Change color of responsive icon */
-        table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
-            background-color: #667eea !important; /* bg-indigo-500 */
+        thead {
+            background-color: #6b7280;
+            color: #7f97c6;
         }
 
-        /* Additional spacing */
+        th, td {
+            padding: 0.5rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        th {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* tr:hover {
+            background-color: #f1f5f9;
+        } */
+
+        /* Container and Image Styles */
         .container {
-            margin-top: 2rem; /* Adjust top margin for better spacing */
+            margin-top: 2rem;
         }
 
         .table-container {
-            margin-top: 2rem; /* Adjust top margin for better spacing */
-            padding: 2rem; /* Add padding for better spacing */
-        }
-
-        .btn-group {
-            margin-top: 1rem; /* Add top margin for button group */
-        }
-
-        .success-message {
-            margin-top: 1.5rem; /* Add top margin for success message */
+            margin-top: 2rem;
+            padding: 2rem;
         }
     </style>
 
@@ -96,55 +74,42 @@
                 <h2 class="text-center text-2xl font-bold">Jurusan Fakultas</h2>
             </div>
             <div class="mt-4">
-                <a class="bg-green-500 text-white py-2 px-4 rounded mt-5" href="{{ route('jurusan_fakultas.create') }}">Buat Jurusan Fakultas Baru</a>
+                <a class="warna rounded mt-5 mb-4 transition duration-300 ease-in-out" href="{{ route('jurusan_fakultas.create') }}">Buat Jurusan Fakultas Baru</a>
             </div>
         </div>
 
         @if ($message = Session::get('success'))
-            <div class="success-message bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+            <div class="alert bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
                 <span class="block sm:inline">{{ $message }}</span>
             </div>
         @endif
 
         <div class="table-container overflow-x-auto bg-white rounded-lg shadow-md">
-            <table id="example" class="table-auto min-w-full border border-gray-300">
-                <thead class="bg-gray-200">
+            <table class="table-fixed text-left">
+                <thead>
                     <tr>
-                        <th class="py-2 px-4 border border-gray-300">No</th>
-                        <th class="py-2 px-4 border border-gray-300">Nama</th>
-                        <th class="py-2 px-4 border border-gray-300" width="280px">Aksi</th>
+                        <th class="py-2 px-4 border">No</th>
+                        <th class="py-2 px-4 border">Nama</th>
+                        <th class="py-2 px-4 border">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($Department as $jf)
-                    <tr>
-                        <td class="py-2 px-4 border border-gray-300">{{ $loop->iteration }}</td>
-                        <td class="py-2 px-4 border border-gray-300">{{ $jf->nama }}</td>
-                        <td class="py-2 px-4 border border-gray-300">
-                            <a class="bg-blue-500 text-white py-2 px-4 rounded" href="{{ route('jurusan_fakultas.edit', $jf->id) }}">Edit</a>
-                            <form action="{{ route('jurusan_fakultas.destroy', $jf->id) }}" method="POST" style="display:inline;">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="bg-red-500 text-white py-2 px-4 rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</button>
-                            </form>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td class="py-2 px-4 border text-center">{{ $loop->iteration }}</td>
+                            <td class="py-2 px-4 border text-center">{{ $jf->nama }}</td>
+                            <td class="py-2 px-4 border text-center">
+                                <a class="warna rounded transition duration-300 ease-in-out" href="{{ route('jurusan_fakultas.edit', $jf->id) }}">Edit</a>
+                                <form action="{{ route('jurusan_fakultas.destroy', $jf->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="warna-delete rounded transition duration-300 ease-in-out" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</button>
+                                </form>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            var table = $('#example').DataTable({
-                    responsive: true
-                })
-                .columns.adjust()
-                .responsive.recalc();
-        });
-    </script>
 @endsection

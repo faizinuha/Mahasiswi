@@ -16,18 +16,26 @@
             <input type="text" class="form-control" id="nim" name="nim" value="{{ $mahasiswa->nim }}" required>
         </div>
         <div class="mb-3">
-            <label for="jurusan_fakultas_id" class="form-label">Jurusan:</label>
-            <select class="form-control" id="jurusan_fakultas_id" name="jurusan_fakultas_id" required>
+            <label for="alamat" class="form-label">Alamat:</label>
+            <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $mahasiswa->alamat }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="no_telp" class="form-label">No. Telepon:</label>
+            <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ $mahasiswa->no_telp }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="department_id" class="form-label">Jurusan:</label>
+            <select class="form-control" id="department_id" name="department_id" required>
                 @foreach($departments as $department)
-                <option value="{{ $department->id }}" {{ $department->id == $mahasiswa->jurusan_fakultas_id ? 'selected' : '' }}>{{ $department->name }}</option>
+                <option value="{{ $department->id }}" {{ $department->id == $mahasiswa->department_id ? 'selected' : '' }}>{{ $department->nama }}</option>
                 @endforeach
             </select>
         </div>
         <div class="mb-3">
-            <label for="organisasi_id" class="form-label">Organisasi:</label>
-            <select class="form-control" id="organisasi_id" name="organisasi_id" required>
-                @foreach($organinations as $organinasi)
-                <option value="{{ $organinasi->id }}" {{ $organinasi->id == $mahasiswa->organisasi_id ? 'selected' : '' }}>{{ $organinasi->name }}</option>
+            <label for="organination_id" class="form-label">Organisasi:</label>
+            <select class="form-control" id="organination_id" name="organination_id" required>
+                @foreach($organinations as $organination)
+                <option value="{{ $organination->id }}" {{ $organination->id == $mahasiswa->organination_id ? 'selected' : '' }}>{{ $organination->name }}</option>
                 @endforeach
             </select>
         </div>

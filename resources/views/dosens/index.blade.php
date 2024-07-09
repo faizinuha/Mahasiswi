@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"> --}}
 <style>
     .warna {
         background-color: #4CAF50;
         color: white;
-        padding: 11px 16px;
+        padding: 6px 12px;
         border-radius: 4px;
         text-decoration: none;
+        font-size: 14px;
     }
 
     .warna:hover {
@@ -17,9 +19,10 @@
     .warna-delete {
         background-color: #f44336;
         color: white;
-        padding: 8px 16px;
+        padding: 6px 12px;
         border-radius: 4px;
         text-decoration: none;
+        font-size: 14px;
     }
 
     .warna-delete:hover {
@@ -35,23 +38,26 @@
         top: -5px;
         background-color: aqua;
         color: white;
-        padding: 8px 16px;
+        padding: 6px 12px;
         border-radius: 4px;
         text-decoration: none;
+        font-size: 14px;
     }
+
     .warn:hover{
-        
+        background-color: #00cccc;
     }
 
     .text {
         position: relative;
         top: 1px;
-        background-color: aqua;
-        color: white;
-        padding: 8px 16px;
+        /* background-color: aqua; */
+        /* color: white; */
+        padding: 6px 12px;
         border-radius: 4px;
         text-decoration: none;
         display: inline-block;
+        font-size: 14px;
     }
 
     .alert {
@@ -59,8 +65,8 @@
     }
 
     .foto-dosen {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         object-fit: cover;
         border-radius: 8px;
     }
@@ -69,7 +75,7 @@
 <div class="container mx-auto px-4">
     <div class="flex justify-between mt-10">
         <div class="flex-1">
-            <h2 class=" text text-center text-2xl font-bold">Daftar Dosen</h2>
+            <h2 class="text text-center text-2xl font-bold">Daftar Dosen</h2>
         </div>
         <div class="mt-4">
             <a class="warn rounded mt-5 mb-4 transition duration-300 ease-in-out" href="{{ route('dosens.create') }}">Tambah Dosen Baru</a>
@@ -86,29 +92,29 @@
         <table class="table-fixed w-full text-left">
             <thead class="uppercase bg-[#6b7280] text-[#7f97c6]" style="background-color: #6b7280; color: #7f97c6;">
                 <tr>
-                    <th class="py-0 border font-bold p-4">-ID</th>
-                    <th class="py-0 border font-bold p-4">-Nama Dosen</th>
-                    <th class="py-0 border font-bold p-4">-Alamat Dosen</th>
-                    <th class="py-0 border font-bold p-4">-No Telepon</th>
-                    <th class="py-0 border font-bold p-4">-Foto Dosen</th>
-                    <th class="py-0 border font-bold p-4">-Aksi</th>
+                    <th class="py-0 border font-bold p-2 text-xs">ID</th>
+                    <th class="py-0 border font-bold p-2 text-xs">Nama Dosen</th>
+                    <th class="py-0 border font-bold p-2 text-xs">Alamat Dosen</th>
+                    <th class="py-0 border font-bold p-2 text-xs">No Telepon</th>
+                    <th class="py-0 border font-bold p-2 text-xs">Foto Dosen</th>
+                    <th class="py-0 border font-bold p-2 text-xs">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($dosens as $dosen)
                 <tr class="py-2">
-                    <td class="py-2 border text-center p-4">{{ $loop->iteration }}</td>
-                    <td class="py-2 border text-center p-4">{{ $dosen->nama_dosen }}</td>
-                    <td class="py-2 border text-center p-4">{{ $dosen->alamat_dosen }}</td>
-                    <td class="py-2 border text-center p-4">{{ $dosen->no_telp }}</td>
-                    <td class="py-2 border text-center p-4">
+                    <td class="py-2 border text-center p-2 text-xs">{{ $loop->iteration }}</td>
+                    <td class="py-2 border text-center p-2 text-xs">{{ $dosen->nama_dosen }}</td>
+                    <td class="py-2 border text-center p-2 text-xs">{{ $dosen->alamat_dosen }}</td>
+                    <td class="py-2 border text-center p-2 text-xs">{{ $dosen->no_telp }}</td>
+                    <td class="py-2 border text-center p-2">
                         @if($dosen->foto_dosen)
                         <img src="{{ asset('storage/' . $dosen->foto_dosen) }}" alt="{{ $dosen->nama_dosen }}" class="foto-dosen">
                         @else
-                        <span class="text-gray-500">Tidak ada foto</span>
+                        <span class="text-gray-500 text-xs">Tidak ada foto</span>
                         @endif
                     </td>
-                    <td class="py-2 border text-center p-4">
+                    <td class="py-2 border text-center p-2 text-xs">
                         <a class="warna rounded transition duration-300 ease-in-out" href="{{ route('dosens.edit', $dosen->id) }}">Edit</a>
                         <form action="{{ route('dosens.destroy', $dosen->id) }}" method="POST" style="display:inline;">
                             @csrf

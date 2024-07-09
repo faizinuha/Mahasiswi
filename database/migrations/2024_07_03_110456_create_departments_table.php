@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->id();
-            $table->string('name'); // Use 'name' instead of 'nama'
+            $table->string('nama'); // Use 'name' instead of 'nama'
             $table->timestamps();
         });
     }
