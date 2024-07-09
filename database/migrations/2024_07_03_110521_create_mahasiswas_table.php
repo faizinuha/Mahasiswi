@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('no_telp', 20);
             $table->foreignId('organination_id')->constrained('organinations');
             $table->foreignId('department_id')->nullable()->constrained();
+            $table->foreignId('eskuls_id')->constrained();
             $table->timestamps();
         });
     }

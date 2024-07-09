@@ -29,7 +29,12 @@
 
         /* Alert Style */
         .alert {
+            background-color: blue;
+            border: 2px solid #2196F3; /* Update border color and thickness */
+            color: white;
             margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         /* Table Styles */

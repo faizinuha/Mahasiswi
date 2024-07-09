@@ -50,19 +50,21 @@ class OrganisasiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Organination $organisasi)
+    public function edit($id)
     {
+        $organisasi = Organination::find($id);
         return view('organisations.edit', compact('organisasi'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Organination $organisasi)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
+        $organisasi = Organination::find($id);
 
         $organisasi->update($request->all());
         return redirect()->route('organisations.index')
@@ -75,6 +77,7 @@ class OrganisasiController extends Controller
     public function destroy(Organination $organisasi)
     {
         $organisasi->delete();
+        
         return redirect()->route('organisations.index')
             ->with('success', 'Organisasi berhasil dihapus.');
     }

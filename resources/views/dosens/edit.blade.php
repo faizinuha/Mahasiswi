@@ -3,7 +3,12 @@
 @section('content')
 <div class="container mx-auto px-4">
     <h2 class="text-center text-2xl font-bold mt-10">Edit Dosen</h2>
-
+    <style>
+          .tes{
+        background-color: aqua;
+        border: 2px sollid #2196F3;
+    }
+    </style>
     <form action="{{ route('dosens.update', $dosen->id) }}" method="POST" enctype="multipart/form-data" class="mt-5">
         @csrf
         @method('PUT')
@@ -24,7 +29,7 @@
             <input type="file" name="foto_dosen" class="w-full px-4 py-2 border rounded-lg focus:outline-none">
         </div>
         <div class="mt-4">
-            <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded">Update</button>
+            <button type="submit" class="tes bg-blue-500 text-white py-2 px-4 rounded">Update</button>
         </div>
     </form>
 </div>

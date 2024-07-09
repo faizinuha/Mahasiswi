@@ -61,7 +61,12 @@
     }
 
     .alert {
-        margin-top: 20px;
+        background-color: blue;
+            border: 2px solid #2196F3; /* Update border color and thickness */
+            color: white;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
     }
 
     .foto-dosen {
@@ -70,6 +75,7 @@
         object-fit: cover;
         border-radius: 8px;
     }
+  
 </style>
 
 <div class="container mx-auto px-4">
@@ -119,7 +125,7 @@
                         <form action="{{ route('dosens.destroy', $dosen->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="warna-delete rounded transition duration-300 ease-in-out" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</button>
+                            <button type="submit" class="tes warna-delete rounded transition duration-300 ease-in-out" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?');">Hapus</button>
                         </form>
                     </td>
                 </tr>
