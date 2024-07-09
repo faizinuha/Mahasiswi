@@ -26,7 +26,7 @@
             <label for="jurusan_fakultas_id">Jurusan:</label>
             <select class="form-control" id="jurusan_fakultas_id" name="department_id" required>
                 @foreach($departments as $department)
-                <option value="{{ $department->id }}">{{ $department->nama }}</option>
+                <option value="{{ $department->id }}">{{ $department->name }}</option>
                 @endforeach
             </select>
         </div>

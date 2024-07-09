@@ -3,7 +3,7 @@
         Dashboard
     </x-slot>
 
-    <x-slot name="header" class="">
+    <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
         </h2>
@@ -21,11 +21,11 @@
             <div class="flex flex-col space-y-6">
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow">
                     <h5 class="text-2xl font-bold tracking-tight text-gray-900">Total Organisasi</h5>
-                    <p class="mt-2 text-gray-700">{{ $organinationCount }}</p>
+                    <p class="mt-2 text-gray-700">{{ $OrganinationCount }}</p>
                 </div>
                 <div class="p-6 bg-white border border-gray-200 rounded-lg shadow">
                     <h5 class="text-2xl font-bold tracking-tight text-gray-900">Total Department</h5>
-                    <p class="mt-2 text-gray-700">{{ $departmentCount }}</p>
+                    <p class="mt-2 text-gray-700">{{ $departmentsCount }}</p>
                 </div>
             </div>
         </div>

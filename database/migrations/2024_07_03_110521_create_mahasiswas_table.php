@@ -17,20 +17,23 @@ return new class extends Migration
             $table->string('nim', 20);
             $table->string('alamat');
             $table->string('no_telp', 20);
-            $table->foreignId('organination_id')->constrained();
-            $table->foreignId('department_id')->nullable()->constrained()->onDelete('null');
+            $table->foreignId('organinations_id')->constrained();
+            $table->foreignId('departments_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
-    
-    // $table->foreign('department_id')
-    //     ->references('id')->on('departments')
-    //     ->onDelete('cascade');
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
+        Schema::table('mahasiswas', function (Blueprint $table) {
+            // Drop foreign key constraints first
+            $table->dropForeign(['organinations_id']);
+            $table->dropForeign(['department_id']);
+        });
+
         Schema::dropIfExists('mahasiswas');
     }
 };

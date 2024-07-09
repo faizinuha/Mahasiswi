@@ -124,7 +124,7 @@
                             <td class="py-2 px-4 border border-gray-300">{{ $loop->iteration }}</td>
                             <td class="py-2 px-4 border border-gray-300">{{ $mahasiswa->nama }}</td>
                             <td class="py-2 px-4 border border-gray-300">{{ $mahasiswa->nim }}</td>
-                            <td class="py-2 px-4 border border-gray-300">{{ $mahasiswa->department->nama }}</td>
+                            <td class="py-2 px-4 border border-gray-300">{{ $mahasiswa->Department->name }}</td>
                             <td class="py-2 px-4 border border-gray-300">{{ $mahasiswa->organination->name }}</td>
                             <td class="py-2 px-4 border border-gray-300">
                                 <a class="bg-blue-500 text-white py-2 px-4 rounded" href="{{ route('mahasiswas.edit', $mahasiswa->id) }}"><i class='bx bxs-eyedropper'></i></a>

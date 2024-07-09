@@ -1,7 +1,4 @@
 <?php
-// routes/web.php
-
-use App\Http\Controllers\EskulController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\OrganisasiController;
@@ -30,6 +27,6 @@ Route::resource('dosens', DosenController::class);
 Route::resource('organisations', OrganisasiController::class);
 Route::resource('jurusan_fakultas', JurusanFakultasController::class);
 Route::resource('mahasiswas', MahasiswaController::class);
-Route::resource('eskuls', EskulController::class);
+
 
 require __DIR__.'/auth.php';

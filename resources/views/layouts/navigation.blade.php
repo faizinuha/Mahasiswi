@@ -27,9 +27,9 @@
                     <x-nav-link :href="route('jurusan_fakultas.index')" :active="request()->routeIs('jurusan_fakultas.index')">
                         {{ __('Jurusan Fakultas') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('eskuls.index')" :active="request()->routeIs('eskuls.index')">
+                    {{-- <x-nav-link :href="route('eskuls.index')" :active="request()->routeIs('eskuls.index')">
                         {{ __('Eskul') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
                 </div>
             </div>
 

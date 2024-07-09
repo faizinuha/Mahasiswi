@@ -28,6 +28,9 @@
 
     .war {
         background-color: #4CAF50;
+        padding: 8px 16px;
+        border-radius:4px;
+        width: 200px;
     }
 
     .warn {

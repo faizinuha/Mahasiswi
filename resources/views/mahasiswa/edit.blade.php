@@ -19,7 +19,7 @@
             <label for="jurusan_fakultas_id" class="form-label">Jurusan:</label>
             <select class="form-control" id="jurusan_fakultas_id" name="jurusan_fakultas_id" required>
                 @foreach($departments as $department)
-                <option value="{{ $department->id }}" {{ $department->id == $mahasiswa->jurusan_fakultas_id ? 'selected' : '' }}>{{ $department->nama }}</option>
+                <option value="{{ $department->id }}" {{ $department->id == $mahasiswa->jurusan_fakultas_id ? 'selected' : '' }}>{{ $department->name }}</option>
                 @endforeach
             </select>
         </div>

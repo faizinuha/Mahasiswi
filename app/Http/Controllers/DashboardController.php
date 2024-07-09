@@ -14,9 +14,9 @@ class DashboardController extends Controller
     {
         $mahasiswaCount = Mahasiswa::count();
         $dosenCount = Dosen::count();
-        $organinationCount = Organination::count();
-        $departmentCount = Department::count();
+        $OrganinationCount = Organination::count();
+        $departmentsCount = Department::count();
 
-        return view('dashboard', compact('mahasiswaCount', 'dosenCount', 'organinationCount', 'departmentCount'));
+        return view('dashboard', compact('mahasiswaCount', 'dosenCount', 'OrganinationCount', 'departmentsCount'));
     }
 }

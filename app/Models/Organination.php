@@ -9,6 +9,7 @@ class Organination extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
     public function mahasiswas()
     {
         return $this->hasMany(Mahasiswa::class);
