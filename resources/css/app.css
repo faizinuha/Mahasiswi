@@ -1,0 +1,4 @@
+/* @import 'bootstrap/dist/css/boostraps'; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
