@@ -5,7 +5,8 @@ use App\Http\Controllers\OrganisasiController;
 use App\Http\Controllers\JurusanFakultasController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\dataController;
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\EskulController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,6 +26,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::resource('dosens', DosenController::class);
+Route::resource('eskuls', EskulController::class);
 Route::resource('organisations', OrganisasiController::class);
 Route::resource('jurusan_fakultas', JurusanFakultasController::class);
 Route::resource('mahasiswas', MahasiswaController::class);

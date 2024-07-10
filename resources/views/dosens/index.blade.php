@@ -75,7 +75,11 @@
         object-fit: cover;
         border-radius: 8px;
     }
-  
+    thead {
+        background-color: #2196F3   ;
+        color: white;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
 </style>
 
 <div class="container mx-auto px-4">
@@ -96,7 +100,7 @@
 
     <div class="relative overflow-hidden shadow-md rounded-lg mt-5">
         <table class="table-fixed w-full text-left">
-            <thead class="uppercase bg-[#6b7280] text-[#7f97c6]" style="background-color: #6b7280; color: #7f97c6;">
+            <thead class="thead">
                 <tr>
                     <th class="py-0 border font-bold p-2 text-xs">ID</th>
                     <th class="py-0 border font-bold p-2 text-xs">Nama Dosen</th>

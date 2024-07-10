@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Eskul;
 
 class EskulController extends Controller
 {
@@ -11,7 +12,9 @@ class EskulController extends Controller
      */
     public function index()
     {
-        //
+        // Menampilkan semua data Eskul
+        $eskul = Eskul::all();
+        return view('eskuls.index', compact('eskul'));
     }
 
     /**
@@ -19,7 +22,8 @@ class EskulController extends Controller
      */
     public function create()
     {
-        //
+        // Menampilkan form untuk membuat Eskul baru
+        return view('eskuls.create');
     }
 
     /**
@@ -27,38 +31,58 @@ class EskulController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi dan simpan data Eskul baru
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Eskul::create($request->all());
+        return redirect()->route('eskuls.index')
+            ->with('success', 'Eskul berhasil dibuat.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Eskul $eskul)
     {
-        //
+        // Menampilkan detail Eskul
+        return view('eskuls.show', compact('eskul'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Eskul $eskul)
     {
-        //
+        // Menampilkan form untuk mengedit Eskul
+        return view('eskuls.edit', compact('eskul'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Eskul $eskul)
     {
-        //
+        // Validasi dan update data Eskul
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $eskul->update($request->all());
+        return redirect()->route('eskuls.index')
+            ->with('success', 'Eskul berhasil diupdate.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Eskul $eskul)
     {
-        //
+        // Hapus data Eskul
+        $eskul->delete();
+        
+        return redirect()->route('eskuls.index')
+            ->with('success', 'Eskul berhasil dihapus.');
     }
 }
