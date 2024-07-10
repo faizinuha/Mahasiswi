@@ -1,44 +1,43 @@
 @extends('layouts.app')
 
 @section('content')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-<div class="container">
-    <h1>Tambah Mahasiswa</h1>
+<div class="container mx-auto px-4">
+    <h1 class="text-2xl font-bold mb-6">Tambah Mahasiswa</h1>
     <form action="{{ route('mahasiswas.store') }}" method="POST">
         @csrf
-        <div class="form-group">
-            <label for="nama">Nama:</label>
-            <input type="text" class="form-control" id="nama" name="nama" required>
+        <div class="mb-4">
+            <label for="nama" class="block text-gray-700 text-sm font-bold mb-2">Nama:</label>
+            <input type="text" id="nama" name="nama" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
-        <div class="form-group">
-            <label for="nim">NIM:</label>
-            <input type="text" class="form-control" id="nim" name="nim" required>
+        <div class="mb-4">
+            <label for="nim" class="block text-gray-700 text-sm font-bold mb-2">NIM:</label>
+            <input type="text" id="nim" name="nim" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
-        <div class="form-group">
-            <label for="alamat">alamat:</label>
-            <input type="text" class="form-control" id="alamat" name="alamat" required>
+        <div class="mb-4">
+            <label for="alamat" class="block text-gray-700 text-sm font-bold mb-2">Alamat:</label>
+            <input type="text" id="alamat" name="alamat" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
-        <div class="form-group">
-            <label for="no_telp">no_telp:</label>
-            <input type="text" class="form-control" id="no_telp" name="no_telp" required>
+        <div class="mb-4">
+            <label for="no_telp" class="block text-gray-700 text-sm font-bold mb-2">No Telp:</label>
+            <input type="text" id="no_telp" name="no_telp" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
-        <div class="form-group">
-            <label for="jurusan_fakultas_id">Jurusan:</label>
-            <select class="form-control" id="jurusan_fakultas_id" name="department_id" required>
+        <div class="mb-4">
+            <label for="jurusan_fakultas_id" class="block text-gray-700 text-sm font-bold mb-2">Jurusan:</label>
+            <select id="jurusan_fakultas_id" name="department_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                 @foreach($departments as $department)
                 <option value="{{ $department->id }}">{{ $department->nama }}</option>
                 @endforeach
             </select>
         </div>
-        <div class="form-group">
-            <label for="Organination_id">Organisasi:</label>
-            <select class="form-control" id="Organination_id" name="organination_id" required>
+        <div class="mb-4">
+            <label for="Organination_id" class="block text-gray-700 text-sm font-bold mb-2">Organisasi:</label>
+            <select id="Organination_id" name="organination_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                 @foreach($organinations as $organination)
                 <option value="{{ $organination->id }}">{{ $organination->name }}</option>
                 @endforeach
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Simpan</button>
     </form>
 </div>
 @endsection
