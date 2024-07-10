@@ -33,7 +33,7 @@
                         <td class="py-2 px-4 border-b">{{ $index + 1 }}</td>
                         <td class="py-2 px-4 border-b">{{ $eskul->name }}</td>
                         <td class="py-2 px-4 border-b">
-                            <a href="{{ route('eskuls.edit', $eskul->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            <a href="{{ route('eskuls.edit', $eskul->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 m-2 px-4 rounded">
                                 Edit
                             </a>
                             <form action="{{ route('eskuls.destroy', $eskul->id) }}" method="POST" class="inline">

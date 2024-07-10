@@ -14,4 +14,5 @@ class Organination extends Model
     {
         return $this->hasMany(Mahasiswa::class);
     }
+    
 }

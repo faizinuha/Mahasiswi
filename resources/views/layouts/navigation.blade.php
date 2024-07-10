@@ -4,14 +4,11 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
-                <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        {{-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> --}}
                         <img src="{{ asset('img/logopkldark.png') }}" alt="Logo" class="h-8 w-auto">
                     </a>
                 </div>
-
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -25,7 +22,7 @@
                         {{ __('Dosen') }}
                     </x-nav-link>
                     <x-nav-link :href="route('organisations.index')" :active="request()->routeIs('organisations.index')">
-                        {{ __('organisations') }}
+                        {{ __('Organisations') }}
                     </x-nav-link>
                     <x-nav-link :href="route('jurusan_fakultas.index')" :active="request()->routeIs('jurusan_fakultas.index')">
                         {{ __('Jurusan Fakultas') }}
@@ -34,11 +31,8 @@
                         {{ __('Eskuls') }}
                     </x-nav-link>
                     <x-nav-link :href="route('data.index')" :active="request()->routeIs('data.index')">
-                        {{ __('dataLaporan') }}
+                        {{ __('Data Laporan') }}
                     </x-nav-link>
-                    {{-- <x-nav-link :href="route('eskuls.index')" :active="request()->routeIs('eskuls.index')">
-                        {{ __('Eskul') }}
-                    </x-nav-link> --}}
                 </div>
             </div>
 
@@ -63,6 +57,9 @@
 
                         <x-slot name="content">
                             <!-- Authentication -->
+                            <x-dropdown-link :href="route('profile.edit')">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <x-dropdown-link :href="route('logout')"
@@ -105,10 +102,13 @@
                 {{ __('Dosen') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('organisations.index')" :active="request()->routeIs('organisations.index')">
-                {{ __('organisations') }}
+                {{ __('Organisations') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('jurusan_fakultas.index')" :active="request()->routeIs('jurusan_fakultas.index')">
                 {{ __('Jurusan Fakultas') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('eskuls.index')" :active="request()->routeIs('eskuls.index')">
+                {{ __('Eskuls') }}
             </x-responsive-nav-link>
         </div>
 
@@ -121,7 +121,9 @@
                 </div>
 
                 <div class="mt-3 space-y-1">
-                    <!-- Authentication -->
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        {{ __('Profile') }}
+                    </x-responsive-nav-link>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <x-responsive-nav-link :href="route('logout')"

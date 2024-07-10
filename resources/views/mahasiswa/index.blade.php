@@ -74,6 +74,10 @@
         object-fit: cover;
         border-radius: 8px;
     }
+    .thead{
+        background-color: #2196F3;
+        color: white !important;;
+    }
 </style>
 
 <div class="container mx-auto px-4">
@@ -94,7 +98,7 @@
 
     <div class="table-container overflow-x-auto bg-white rounded-lg shadow-md">
         <table class="table-fixed text-left">
-            <thead>
+            <thead class="thead">
                 <tr>
                     <th class="py-2 px-4 border">No</th>
                     <th class="py-2 px-4 border">Nama</th>

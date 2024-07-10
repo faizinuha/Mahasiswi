@@ -44,8 +44,9 @@
         }
 
         thead {
-            background-color: #6b7280;
-            color: #7f97c6;
+            background-color: #2196F3;
+            color: white;
+            border-radius: 20px;
         }
 
         th, td {
