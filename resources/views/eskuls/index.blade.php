@@ -20,19 +20,19 @@
 
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border">
-            <thead>
+            <thead class="bg-blue-700">
                 <tr>
-                    <th class="py-2 px-4 border-b">No</th>
-                    <th class="py-2 px-4 border-b">Nama Eskul</th>
-                    <th class="py-2 px-4 border-b">Aksi</th>
+                    <th class="py-2 px-4 border">No</th>
+                    <th class="py-2 px-4 border">Nama Eskul</th>
+                    <th class="py-2 px-4 border">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($eskul as $index => $eskul)
                     <tr>
-                        <td class="py-2 px-4 border-b">{{ $index + 1 }}</td>
-                        <td class="py-2 px-4 border-b">{{ $eskul->name }}</td>
-                        <td class="py-2 px-4 border-b">
+                        <td class="py-2 px-4 border">{{ $index + 1 }}</td>
+                        <td class="py-2 px-4 border">{{ $eskul->name }}</td>
+                        <td class="py-2 px-4 border">
                             <a href="{{ route('eskuls.edit', $eskul->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 m-2 px-4 rounded">
                                 Edit
                             </a>

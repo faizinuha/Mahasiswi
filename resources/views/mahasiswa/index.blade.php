@@ -9,6 +9,7 @@
         padding: 11px 16px;
         border-radius: 4px;
         text-decoration: none;
+        margin-right: 10px; /* Menambahkan margin ke kanan untuk jarak antar tombol */
     }
 
     .warna:hover {
@@ -41,6 +42,7 @@
     table {
         width: 100%;
         text-align: left;
+        margin-top: 20px; /* Menambahkan margin atas untuk jarak dari elemen sebelumnya */
     }
 
     thead {
@@ -66,6 +68,7 @@
     .table-container {
         margin-top: 2rem;
         padding: 2rem;
+        overflow-x: auto;
     }
 
     .foto-mahasiswa {
@@ -74,10 +77,12 @@
         object-fit: cover;
         border-radius: 8px;
     }
-    .thead{
+
+    .thead {
         background-color: #2196F3;
-        color: white !important;;
+        color: white !important;
     }
+
     /* the animation buttons  */
     .warn {
         position: relative;
@@ -89,6 +94,7 @@
         text-decoration: none;
         overflow: hidden;
         transition: border-radius 0.4s ease, background-color 0.4s ease;
+        margin-top: 10px; /* Menambahkan margin atas untuk jarak antara tombol tambah mahasiswa dan elemen lainnya */
     }
 
     .warn::before {
@@ -114,30 +120,27 @@
 
     .warn:hover {
         color: white;
-    }
-
-    .warn:hover {
         border-radius: 20px;
     }
 </style>
 
 <div class="container mx-auto px-4">
-    <div class="flex justify-between mt-10">
-        <div class="flex-1">
-            <h2 class="text-center text-2xl font-bold">Daftar Mahasiswa</h2>
-        </div>
+    <div class="flex justify-between items-center mt-10">
+        <h2 class="text-center text-2xl font-bold">Daftar Mahasiswa</h2>
         <div class="mt-4">
-            <a class="warn rounded mt-5 mb-4 transition duration-300 ease-in-out" href="{{ route('mahasiswas.create') }}"><span>Tambah Mahasiswa</span></a>
+            <a class="warn rounded transition duration-300 ease-in-out" href="{{ route('mahasiswas.create') }}">
+                <span>Tambah Mahasiswa</span>
+            </a>
         </div>
     </div>
 
     @if ($message = Session::get('success'))
-        <div class="alert bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative">
+        <div class="alert bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mt-4">
             <span class="block sm:inline">{{ $message }}</span>
         </div>
     @endif
 
-    <div class="table-container overflow-x-auto bg-white rounded-lg shadow-md">
+    <div class="table-container bg-white rounded-lg shadow-md">
         <table class="table-fixed text-left">
             <thead class="thead">
                 <tr>
@@ -152,14 +155,14 @@
             <tbody>
                 @foreach ($mahasiswas as $mahasiswa)
                     <tr>
-                        <td class="py-2 px-4 border text-center">{{ $loop->iteration }}</td>
+                        <td class="py-2 px-4 border">{{ $loop->iteration }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->nama }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->nim }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->Department->nama }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->organination->name }}</td>
                         <td class="py-2 px-4 border text-center">
                             <a class="warna rounded transition duration-300 ease-in-out" href="{{ route('mahasiswas.edit', $mahasiswa->id) }}">Edit</a>
-                            <form action="{{ route('mahasiswas.destroy', $mahasiswa->id) }}" method="POST" class="delete-form" style="display:inline;">
+                            <form action="{{ route('mahasiswas.destroy', $mahasiswa->id) }}" method="POST" class="delete-form" style="display:inline; margin-left: 10px;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="button" class="warna-delete rounded transition duration-300 ease-in-out delete-button">Hapus</button>

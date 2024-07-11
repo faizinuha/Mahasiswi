@@ -102,7 +102,7 @@
                 <tbody>
                     @foreach ($Department as $jf)
                         <tr>
-                            <td class="py-2 px-4 border text-center">{{ $loop->iteration }}</td>
+                            <td class="py-2 px-4">{{ $loop->iteration }}</td>
                             <td class="py-2 px-4 border text-center">{{ $jf->nama }}</td>
                             <td class="py-2 px-4 border text-center">
                                 <a class="warna rounded transition duration-300 ease-in-out" href="{{ route('jurusan_fakultas.edit', $jf->id) }}">Edit</a>
