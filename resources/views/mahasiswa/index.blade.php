@@ -78,6 +78,47 @@
         background-color: #2196F3;
         color: white !important;;
     }
+    /* the animation buttons  */
+    .warn {
+        position: relative;
+        display: inline-block;
+        background-color: #2196F3;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 4px;
+        text-decoration: none;
+        overflow: hidden;
+        transition: border-radius 0.4s ease, background-color 0.4s ease;
+    }
+
+    .warn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: #45a049;
+        transition: left 0.4s ease;
+        z-index: 0;
+    }
+
+    .warn:hover::before {
+        left: 0;
+    }
+
+    .warn span {
+        position: relative;
+        z-index: 1;
+    }
+
+    .warn:hover {
+        color: white;
+    }
+
+    .warn:hover {
+        border-radius: 20px;
+    }
 </style>
 
 <div class="container mx-auto px-4">
@@ -86,7 +127,7 @@
             <h2 class="text-center text-2xl font-bold">Daftar Mahasiswa</h2>
         </div>
         <div class="mt-4">
-            <a class="warna rounded mt-5 mb-4 transition duration-300 ease-in-out" href="{{ route('mahasiswas.create') }}">Tambah Mahasiswa</a>
+            <a class="warn rounded mt-5 mb-4 transition duration-300 ease-in-out" href="{{ route('mahasiswas.create') }}"><span>Tambah Mahasiswa</span></a>
         </div>
     </div>
 

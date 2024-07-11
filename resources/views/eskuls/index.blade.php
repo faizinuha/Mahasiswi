@@ -19,7 +19,7 @@
     </div>
 
     <div class="overflow-x-auto">
-        <table class="min-w-full bg-white">
+        <table class="min-w-full bg-white border">
             <thead>
                 <tr>
                     <th class="py-2 px-4 border-b">No</th>

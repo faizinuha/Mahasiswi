@@ -21,6 +21,10 @@
                         <h5 class="text-2xl font-bold tracking-tight text-gray-900">Total Department</h5>
                         <p class="mt-2 text-gray-700">{{ $departmentsCount }}</p>
                     </div>
+                    <div class="p-6 bg-white border border-gray-200 rounded-lg shadow">
+                        <h5 class="text-2xl font-bold tracking-tight text-gray-900">Total Eskul</h5>
+                        <p class="mt-2 text-gray-700">{{ $Eskulcount }}</p>
+                    </div>
                 </div>
             </div>
         </div>
