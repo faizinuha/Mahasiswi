@@ -147,6 +147,8 @@
                     <th class="py-2 px-4 border">No</th>
                     <th class="py-2 px-4 border">Nama</th>
                     <th class="py-2 px-4 border">NIM</th>
+                    <th class="py-2 px-4 border">Alamat</th>
+                    <th class="py-2 px-4 border">No_Telp</th>
                     <th class="py-2 px-4 border">Jurusan</th>
                     <th class="py-2 px-4 border">Organisasi</th>
                     <th class="py-2 px-4 border">Aksi</th>
@@ -158,6 +160,8 @@
                         <td class="py-2 px-4 border">{{ $loop->iteration }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->nama }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->nim }}</td>
+                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->alamat}}</td>
+                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->no_telp}}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->Department->nama }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->organination->name }}</td>
                         <td class="py-2 px-4 border text-center">

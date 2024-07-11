@@ -28,7 +28,7 @@ class MahasiswaController extends Controller
             'nama' => 'required|string|max:255',
             'nim' => 'required|string|max:20|unique:mahasiswas',
             'alamat' => 'required|string|max:255',
-            'no_telp' => 'required|string|max:20',
+            'no_telp' => 'required|string|max:20|unique:mahasiswas', // Perbaiki typo dari "uniue" menjadi "unique"
             'department_id' => 'required',
             'organination_id' => 'required',
         ]);
@@ -57,7 +57,7 @@ class MahasiswaController extends Controller
             'nama' => 'required|string|max:255',
             'nim' => 'required|string|max:20|unique:mahasiswas,nim,' . $mahasiswa->id,
             'alamat' => 'required|string|max:255',
-            'no_telp' => 'required|string|max:20',
+            'no_telp' => 'required|string|max:20|unique:mahasiswas,no_telp,' . $mahasiswa->id, // Perbaiki aturan validasi
             'department_id' => 'required',
             'organination_id' => 'required',
         ]);

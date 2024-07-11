@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Organination;
-use App\Models\Organisasi;
+use App\Models\Organination; // Pastikan ini adalah nama model yang benar
 use Illuminate\Http\Request;
 
 class OrganisasiController extends Controller
@@ -31,7 +30,7 @@ class OrganisasiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:organinations', // Tambahkan aturan unique
         ]);
 
         Organination::create($request->all());
@@ -62,7 +61,7 @@ class OrganisasiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:organinations,name,' . $id, // Tambahkan aturan unique
         ]);
         $organisasi = Organination::find($id);
 
@@ -74,9 +73,12 @@ class OrganisasiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Organination $organisasi)
+    public function destroy($id)
     {
+
+        $organisasi = Organination::findORFail($id);
         $organisasi->delete();
+        $organisasi->mahasiswas()->delete();
         
         return redirect()->route('organisations.index')
             ->with('success', 'Organisasi berhasil dihapus.');

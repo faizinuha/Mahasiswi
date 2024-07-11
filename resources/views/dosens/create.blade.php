@@ -31,7 +31,7 @@
                 <label for="foto_dosen" class="block text-gray-700">Foto Dosen</label>
                 <input type="file" name="foto_dosen" id="foto_dosen"
                     class="w-full px-4 py-2 border rounded-lg focus:outline-none" onchange="previewImage(event)">
-                <img id="imagePreview" class="mt-2" style="max-width: 200px; max-height: 200px;">
+                <img id="imagePreview" class="mt-2" style="max-width: 200px; max-height: 200px;" >
             </div>
             <div class="mt-4">
                 <button type="submit" class="tes bg-green-500 text-white py-2 px-4 rounded">Simpan</button>
