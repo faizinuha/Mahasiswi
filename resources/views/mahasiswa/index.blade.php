@@ -2,14 +2,13 @@
 
 @section('content')
 <style>
-    /* Consistent Button Styles */
     .warna {
         background-color: #4CAF50;
         color: white;
         padding: 11px 16px;
         border-radius: 4px;
         text-decoration: none;
-        margin-right: 10px; /* Menambahkan margin ke kanan untuk jarak antar tombol */
+        margin-right: 10px;
     }
 
     .warna:hover {
@@ -28,21 +27,19 @@
         background-color: #da190b;
     }
 
-    /* Alert Style */
     .alert {
         background-color: blue;
-        border: 2px solid #2196F3; /* Update border color and thickness */
+        border: 2px solid #2196F3;
         color: white;
         margin-top: 20px;
         padding: 10px;
         border-radius: 5px;
     }
 
-    /* Table Styles */
     table {
         width: 100%;
         text-align: left;
-        margin-top: 20px; /* Menambahkan margin atas untuk jarak dari elemen sebelumnya */
+        margin-top: 20px;
     }
 
     thead {
@@ -60,7 +57,6 @@
         text-transform: uppercase;
     }
 
-    /* Container and Image Styles */
     .container {
         margin-top: 2rem;
     }
@@ -83,7 +79,6 @@
         color: white !important;
     }
 
-    /* the animation buttons  */
     .warn {
         position: relative;
         display: inline-block;
@@ -94,7 +89,7 @@
         text-decoration: none;
         overflow: hidden;
         transition: border-radius 0.4s ease, background-color 0.4s ease;
-        margin-top: 10px; /* Menambahkan margin atas untuk jarak antara tombol tambah mahasiswa dan elemen lainnya */
+        margin-top: 10px;
     }
 
     .warn::before {
@@ -166,10 +161,10 @@
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->organination->name }}</td>
                         <td class="py-2 px-4 border text-center">
                             <a class="warna rounded transition duration-300 ease-in-out" href="{{ route('mahasiswas.edit', $mahasiswa->id) }}">Edit</a>
-                            <form action="{{ route('mahasiswas.destroy', $mahasiswa->id) }}" method="POST" class="delete-form" style="display:inline; margin-left: 10px;">
+                            <form action="{{ route('mahasiswas.destroy', $mahasiswa->id) }}" method="POST"  style="display:inline; margin-left: 10px;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="warna-delete rounded transition duration-300 ease-in-out delete-button">Hapus</button>
+                                <button type="button" class="warna-delete rounded transition duration-300 ease-in-out m-2 delete-button">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -179,6 +174,7 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const deleteButtons = document.querySelectorAll('.delete-button');
@@ -188,33 +184,32 @@
                 event.preventDefault();
 
                 const form = button.closest('.delete-form');
-
                 Swal.mixin({
                     customClass: {
-                        confirmButton: 'btn btn-success',
-                        cancelButton: 'btn btn-danger'
+                        confirmButton: 'btn bg-green-500 text-white font-bold py-2 m-2 px-4 rounded hover:bg-green-700',
+                        cancelButton: 'btn bg-red-500 text-white font-bold py-2 m-2 px-4 rounded hover:bg-red-700'
                     },
                     buttonsStyling: false
                 }).fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Apakah Anda yakin?',
+                    text: "Anda tidak dapat mengembalikan ini!",
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'No, cancel!',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Tidak, batalkan!',
                     reverseButtons: true
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form.submit();
                         Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
+                            'Dihapus!',
+                            'Data Anda telah dihapus.',
                             'success'
                         )
                     } else if (result.dismiss === Swal.DismissReason.cancel) {
                         Swal.fire(
-                            'Cancelled',
-                            'Your imaginary file is safe :)',
+                            'Dibatalkan',
+                            'Data Anda aman :)',
                             'error'
                         )
                     }

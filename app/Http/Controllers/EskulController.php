@@ -13,8 +13,8 @@ class EskulController extends Controller
     public function index()
     {
         // Menampilkan semua data Eskul
-        $eskul = Eskul::all();
-        return view('eskuls.index', compact('eskul'));
+        $eskuls = Eskul::all();
+        return view('eskuls.index', compact('eskuls'));
     }
 
     /**
@@ -33,7 +33,7 @@ class EskulController extends Controller
     {
         // Validasi dan simpan data Eskul baru
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:eskuls', // Tambahkan aturan unique
         ]);
 
         Eskul::create($request->all());
@@ -66,7 +66,7 @@ class EskulController extends Controller
     {
         // Validasi dan update data Eskul
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:eskuls,name,' . $eskul->id, // Tambahkan aturan unique
         ]);
 
         $eskul->update($request->all());

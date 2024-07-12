@@ -3,6 +3,7 @@
 @section('title', 'Daftar Eskul')
 
 @section('content')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <div class="container mx-auto p-6">
     <h2 class="text-2xl font-bold mb-6">Daftar Eskul</h2>
 
@@ -28,7 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($eskul as $index => $eskul)
+                @foreach ($eskuls as $index => $eskul)
                     <tr>
                         <td class="py-2 px-4 border">{{ $index + 1 }}</td>
                         <td class="py-2 px-4 border">{{ $eskul->name }}</td>
@@ -36,10 +37,10 @@
                             <a href="{{ route('eskuls.edit', $eskul->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 m-2 px-4 rounded">
                                 Edit
                             </a>
-                            <form action="{{ route('eskuls.destroy', $eskul->id) }}" method="POST" class="inline">
+                            <form action="{{ route('eskuls.destroy', $eskul->id) }}" method="POST" class="inline delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded" onclick="return confirm('Apakah Anda yakin ingin menghapus eskul ini?')">
+                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button" >
                                     Hapus
                                 </button>
                             </form>
@@ -50,4 +51,48 @@
         </table>
     </div>
 </div>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const deleteButtons = document.querySelectorAll('.delete-button');
+
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const form = button.closest('.delete-form');
+                Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                }).fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        Swal.fire(
+                            'Cancelled',
+                            'Your imaginary file is safe :)',
+                            'error'
+                        )
+                    }
+                });
+            });
+        });
+    });
+</script>
+
 @endsection

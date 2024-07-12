@@ -21,7 +21,7 @@ class JurusanFakultasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama' => 'required|string|max:255|unique:departments', // Tambahkan aturan unique
         ]);
 
         Department::create($request->all());
@@ -40,12 +40,11 @@ class JurusanFakultasController extends Controller
         $Department = Department::findOrFail($id);
         return view('jurusan_fakultas.edit', compact('Department'));
     }
-    
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama' => 'required|string|max:255',
+            'nama' => 'required|string|max:255|unique:departments,nama,' . $id, // Tambahkan aturan unique
         ]);
 
         $Department = Department::findOrFail($id);
@@ -66,5 +65,4 @@ class JurusanFakultasController extends Controller
         return redirect()->route('jurusan_fakultas.index')
             ->with('success', 'Jurusan Fakultas berhasil dihapus.');
     }
-    
 }
