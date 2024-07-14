@@ -1,85 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
 <style>
-    .warna {
-        background-color: #4CAF50;
-        color: white;
-        padding: 11px 16px;
-        border-radius: 4px;
-        text-decoration: none;
-        margin-right: 10px;
-    }
-
-    .warna:hover {
-        background-color: #45a049;
-    }
-
-    .warna-delete {
-        background-color: #f44336;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 4px;
-        text-decoration: none;
-    }
-
-    .warna-delete:hover {
-        background-color: #da190b;
-    }
-
-    .alert {
-        background-color: blue;
-        border: 2px solid #2196F3;
-        color: white;
-        margin-top: 20px;
-        padding: 10px;
-        border-radius: 5px;
-    }
-
-    table {
-        width: 100%;
-        text-align: left;
-        margin-top: 20px;
-    }
-
-    thead {
-        background-color: #6b7280;
-        color: #7f97c6;
-    }
-
-    th, td {
-        padding: 0.5rem;
-        border: 1px solid #e5e7eb;
-    }
-
-    th {
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    .container {
-        margin-top: 2rem;
-    }
-
-    .table-container {
-        margin-top: 2rem;
-        padding: 2rem;
-        overflow-x: auto;
-    }
-
-    .foto-mahasiswa {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 8px;
-    }
-
-    .thead {
-        background-color: #2196F3;
-        color: white !important;
-    }
-
-    .warn {
+      .warn {
         position: relative;
         display: inline-block;
         background-color: #2196F3;
@@ -118,7 +42,6 @@
         border-radius: 20px;
     }
 </style>
-
 <div class="container mx-auto px-4">
     <div class="flex justify-between items-center mt-10">
         <h2 class="text-center text-2xl font-bold">Daftar Mahasiswa</h2>
@@ -135,9 +58,9 @@
         </div>
     @endif
 
-    <div class="table-container bg-white rounded-lg shadow-md">
+    <div class="table-container rounded-lg shadow-md">
         <table class="table-fixed text-left">
-            <thead class="thead">
+            <thead class="thead bg-blue-600 ">
                 <tr>
                     <th class="py-2 px-4 border">No</th>
                     <th class="py-2 px-4 border">Nama</th>
@@ -146,6 +69,7 @@
                     <th class="py-2 px-4 border">No_Telp</th>
                     <th class="py-2 px-4 border">Jurusan</th>
                     <th class="py-2 px-4 border">Organisasi</th>
+                    <th class="py-2 px-4 border">Eskul</th> <!-- Tambahkan kolom Eskul -->
                     <th class="py-2 px-4 border">Aksi</th>
                 </tr>
             </thead>
@@ -155,16 +79,17 @@
                         <td class="py-2 px-4 border">{{ $loop->iteration }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->nama }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->nim }}</td>
-                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->alamat}}</td>
-                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->no_telp}}</td>
-                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->Department->nama }}</td>
+                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->alamat }}</td>
+                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->no_telp }}</td>
+                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->department->nama }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->organination->name }}</td>
+                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->eskul->name}}</td> <!-- Tambahkan kolom Eskul -->
                         <td class="py-2 px-4 border text-center">
                             <a class="warna rounded transition duration-300 ease-in-out" href="{{ route('mahasiswas.edit', $mahasiswa->id) }}">Edit</a>
-                            <form action="{{ route('mahasiswas.destroy', $mahasiswa->id) }}" method="POST"  style="display:inline; margin-left: 10px;">
+                            <form action="{{ route('mahasiswas.destroy', $mahasiswa->id) }}" method="POST" style="display:inline; margin-left: 10px;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class="warna-delete rounded transition duration-300 ease-in-out m-2 delete-button">Hapus</button>
+                                <button type="button" class=" war warna-delete rounded transition duration-300 ease-in-out m-2 delete-button">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -173,7 +98,34 @@
         </table>
     </div>
 </div>
-
+<style>
+    .warna{
+        background-color: #FF6B6B;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+    }
+    .war{
+        background-color: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+    }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -183,7 +135,7 @@
             button.addEventListener('click', function(event) {
                 event.preventDefault();
 
-                const form = button.closest('.delete-form');
+                const form = button.closest('form');
                 Swal.mixin({
                     customClass: {
                         confirmButton: 'btn bg-green-500 text-white font-bold py-2 m-2 px-4 rounded hover:bg-green-700',
@@ -191,8 +143,8 @@
                     },
                     buttonsStyling: false
                 }).fire({
-                    title: 'Apakah Anda yakin?',
-                    text: "Anda tidak dapat mengembalikan ini!",
+                    title: 'Anda yakin ingin menghapus data ini?',
+                    text: "Data yang dihapus tidak dapat dikembalikan!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonText: 'Ya, hapus!',
@@ -201,15 +153,10 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form.submit();
-                        Swal.fire(
-                            'Dihapus!',
-                            'Data Anda telah dihapus.',
-                            'success'
-                        )
                     } else if (result.dismiss === Swal.DismissReason.cancel) {
                         Swal.fire(
                             'Dibatalkan',
-                            'Data Anda aman :)',
+                            'Data anda aman :)',
                             'error'
                         )
                     }
@@ -218,4 +165,5 @@
         });
     });
 </script>
+
 @endsection

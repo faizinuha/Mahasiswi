@@ -39,6 +39,14 @@
                 @endforeach
             </select>
         </div>
+        <div class="mb-4">
+            <label for="eskul_id" class="block text-gray-700 text-sm font-bold mb-2">Eskul:</label>
+            <select id="eskul_id" name="eskul_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+                @foreach($eskuls as $eskul)
+                <option value="{{ $eskul->id }}">{{ $eskul->name }}</option>
+                @endforeach
+            </select>
+        </div>
         <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">Update</button>
     </form>
 </div>

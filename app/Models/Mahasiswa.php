@@ -14,13 +14,12 @@ class Mahasiswa extends Model
     {
         return $this->belongsTo(Organination::class);
     }
-
     public function department()
     {
         return $this->belongsTo(Department::class);
     }
-    // public function eskuls()
-    // {
-    //     return $this->belongTo(eskul::class);
-    // }
+    public function Eskul()
+    {
+        return $this->belongsTo(Eskul::class);
+    }
 }

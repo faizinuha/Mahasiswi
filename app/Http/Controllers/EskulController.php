@@ -81,7 +81,7 @@ class EskulController extends Controller
     {
         // Hapus data Eskul
         $eskul->delete();
-        
+    
         return redirect()->route('eskuls.index')
             ->with('success', 'Eskul berhasil dihapus.');
     }

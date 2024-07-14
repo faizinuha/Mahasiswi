@@ -9,7 +9,7 @@ class Eskul extends Model
 {
     use HasFactory;
     protected  $fillable = ['name'];
-
+    protected $guarded = [];
     public function mahasiswas()
     {
         return $this->hasMany(Mahasiswa::class);

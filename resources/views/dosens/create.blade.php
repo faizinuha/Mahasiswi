@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    @if ($errors->any())
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-5 rounded relative mt-4">
+            <strong>Whoops!</strong> Ada masalah dengan inputan anda.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="container mx-auto px-4">
         <h2 class="text-center text-2xl font-bold mt-10">Tambah Dosen Baru</h2>
         <style>
