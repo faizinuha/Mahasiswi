@@ -20,6 +20,9 @@ return new class extends Migration
             $table->foreignId('organination_id')->constrained('organinations');
             $table->foreignId('department_id')->nullable()->constrained();
             $table->foreignId('eskul_id')->nullable()->constrained()->nullOnDelete();
+
+            // $table->foreignId('department_id')->nullable()->constrained();
+            //   $table->foreignId('organination_id')->constrained('organinations')->nullOnDelete();
             // jika ingin menambahkan foreign key ke table lain, gunakan ->constrained('nama_table')
             // jika ingin menambahkan foreign key ke table yang terdapat multi-column, gunakan ->constrained(['nama_kolom1', 'nama_kolom2'])
             // jika ingin menambahkan foreign key ke table yang terdapat multi-table, gunakan ->constrained(['nama_table1', 'nama_table2'], function ($table) {

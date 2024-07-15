@@ -34,6 +34,9 @@ class MahasiswaController extends Controller
             'department_id' => 'required',
             'organination_id' => 'required',
             'eskul_id' => 'nullable' // Eskul bisa null
+
+             // department_id => 'nullable
+            // organination_id => 'nullable
         ]);
 
         Mahasiswa::create($request->all());
@@ -65,6 +68,9 @@ class MahasiswaController extends Controller
             'department_id' => 'required',
             'organination_id' => 'required',
             'eskul_id' => 'nullable' // Eskul bisa null
+
+            // department_id => 'nullable
+            // organination_id => 'nullable
         ]);
         
         $mahasiswa->update($request->all());
