@@ -3,7 +3,7 @@
 @section('content')
 
 <style>
-      .warn {
+    .warn {
         position: relative;
         display: inline-block;
         background-color: #2196F3;
@@ -41,7 +41,36 @@
         color: white;
         border-radius: 20px;
     }
+
+    .warna {
+        background-color: #FF6B6B;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+    }
+
+    .war {
+        background-color: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+    }
 </style>
+
 <div class="container mx-auto px-4">
     <div class="flex justify-between items-center mt-10">
         <h2 class="text-center text-2xl font-bold">Daftar Mahasiswa</h2>
@@ -58,9 +87,9 @@
         </div>
     @endif
 
-    <div class="table-container rounded-lg shadow-md">
-        <table class="table-fixed text-left">
-            <thead class="thead bg-blue-600 ">
+    <div class="table-container rounded-lg shadow-md overflow-x-auto mt-4">
+        <table class="table-auto min-w-full text-left">
+            <thead class="bg-blue-600 text-white">
                 <tr>
                     <th class="py-2 px-4 border">No</th>
                     <th class="py-2 px-4 border">Nama</th>
@@ -69,13 +98,13 @@
                     <th class="py-2 px-4 border">No_Telp</th>
                     <th class="py-2 px-4 border">Jurusan</th>
                     <th class="py-2 px-4 border">Organisasi</th>
-                    <th class="py-2 px-4 border">Eskul</th> <!-- Tambahkan kolom Eskul -->
+                    <th class="py-2 px-4 border">Eskul</th>
                     <th class="py-2 px-4 border">Aksi</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($mahasiswas as $mahasiswa)
-                    <tr>
+                    <tr class="bg-white border-b hover:bg-gray-100">
                         <td class="py-2 px-4 border">{{ $loop->iteration }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->nama }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->nim }}</td>
@@ -83,13 +112,13 @@
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->no_telp }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->department->nama }}</td>
                         <td class="py-2 px-4 border text-center">{{ $mahasiswa->organination->name }}</td>
-                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->eskul->name}}</td> <!-- Tambahkan kolom Eskul -->
+                        <td class="py-2 px-4 border text-center">{{ $mahasiswa->eskul ? $mahasiswa->eskul->name : 'N/A' }}</td>
                         <td class="py-2 px-4 border text-center">
                             <a class="warna rounded transition duration-300 ease-in-out" href="{{ route('mahasiswas.edit', $mahasiswa->id) }}">Edit</a>
                             <form action="{{ route('mahasiswas.destroy', $mahasiswa->id) }}" method="POST" style="display:inline; margin-left: 10px;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="button" class=" war warna-delete rounded transition duration-300 ease-in-out m-2 delete-button">Hapus</button>
+                                <button type="button" class="war warna-delete rounded transition duration-300 ease-in-out m-2 delete-button">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -98,34 +127,7 @@
         </table>
     </div>
 </div>
-<style>
-    .warna{
-        background-color: #FF6B6B;
-        color: white;
-        border: none;
-        cursor: pointer;
-        padding: 8px 16px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-    }
-    .war{
-        background-color: blue;
-        color: white;
-        border: none;
-        cursor: pointer;
-        padding: 8px 16px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        transition-duration: 0.4s;
-    }
-</style>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

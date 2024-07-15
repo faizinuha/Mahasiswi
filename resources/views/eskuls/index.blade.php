@@ -34,13 +34,13 @@
                         <td class="py-2 px-4 border">{{ $index + 1 }}</td>
                         <td class="py-2 px-4 border">{{ $eskul->name }}</td>
                         <td class="py-2 px-4 border">
-                            <a href="{{ route('eskuls.edit', $eskul->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 m-2 px-4 rounded">
+                            <a href="{{ route('eskuls.edit', $eskul->id) }}" class=" war bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 m-2 px-4 rounded">
                                 Edit
                             </a>
                             <form action="{{ route('eskuls.destroy', $eskul->id) }}" method="POST" class="inline delete-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button" >
+                                <button type="submit" class=" warna bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded delete-button" >
                                     Hapus
                                 </button>
                             </form>
@@ -51,6 +51,34 @@
         </table>
     </div>
 </div>
+<style>
+        .warna{
+        background-color: #FF6B6B;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+    }
+    .war{
+        background-color: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+    }
+</style>
 <script>
         document.addEventListener('DOMContentLoaded', function() {
         const deleteButtons = document.querySelectorAll('.delete-button');

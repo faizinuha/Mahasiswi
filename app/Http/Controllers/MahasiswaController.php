@@ -33,7 +33,7 @@ class MahasiswaController extends Controller
             'no_telp' => 'required|string|max:20|unique:mahasiswas|regex:/^[0-9]+$/', // Pastikan nomor telepon hanya terdiri dari angka dan tidak negatif
             'department_id' => 'required',
             'organination_id' => 'required',
-            'eskul_id' => 'required' // Perbaiki penulisan Eskul
+            'eskul_id' => 'nullable' // Eskul bisa null
         ]);
 
         Mahasiswa::create($request->all());
@@ -64,11 +64,10 @@ class MahasiswaController extends Controller
             'no_telp' => 'required|string|max:20|unique:mahasiswas,no_telp,' . $mahasiswa->id . '|regex:/^[0-9]+$/', // Pastikan nomor telepon hanya terdiri dari angka dan tidak negatif
             'department_id' => 'required',
             'organination_id' => 'required',
-            'eskul_id' => 'required', // Perbaiki penulisan Eskul
+            'eskul_id' => 'nullable' // Eskul bisa null
         ]);
-
+        
         $mahasiswa->update($request->all());
-
         return redirect()->route('mahasiswas.index')
             ->with('success', 'Mahasiswa berhasil diperbarui.');
     }

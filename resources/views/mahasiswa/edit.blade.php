@@ -3,6 +3,29 @@
 @section('content')
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <div class="container mx-auto p-4">
+    @if ($errors->any())
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <strong class="font-bold">Oops!</strong> Ada beberapa masalah dengan inputan Anda.<br><br>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+    @if (session('success'))
+    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <strong class="font-bold">Sukses!</strong> {{ session('success') }}
+    </div>
+    @endif
+
+    @if (session('error'))
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+        <strong class="font-bold">Error!</strong> {{ session('error') }}
+    </div>
+    @endif
+
     <h1 class="text-2xl font-bold mb-4">Edit Mahasiswa</h1>
     <form action="{{ route('mahasiswas.update', $mahasiswa->id) }}" method="POST">
         @csrf
@@ -43,7 +66,7 @@
             <label for="eskul_id" class="block text-gray-700 text-sm font-bold mb-2">Eskul:</label>
             <select id="eskul_id" name="eskul_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
                 @foreach($eskuls as $eskul)
-                <option value="{{ $eskul->id }}">{{ $eskul->name }}</option>
+                <option value="{{ $eskul->id }}" {{ $eskul->id == $mahasiswa->eskul_id ? 'selected' : '' }}>{{ $eskul->name }}</option>
                 @endforeach
             </select>
         </div>

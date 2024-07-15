@@ -18,8 +18,8 @@ class Mahasiswa extends Model
     {
         return $this->belongsTo(Department::class);
     }
-    public function Eskul()
+    public function eskul()
     {
-        return $this->belongsTo(Eskul::class);
+        return $this->belongsTo(Eskul::class, 'eskul_id')->withDefault();
     }
 }

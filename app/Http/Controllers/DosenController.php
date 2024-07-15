@@ -33,7 +33,7 @@ class DosenController extends Controller
         $request->validate([
             'nama_dosen' => 'required|string|max:255',
             'alamat_dosen' => 'required|string|max:255',
-            'no_telp' => 'required|string|max:20|unique:dosens,no_telp',
+            'no_telp' => 'required|string|max:20|unique:dosens,no_telp|regex:/^[0-9]+$/', // Pastikan nomor telepon hanya terdiri dari angka dan tidak negatif
             'foto_dosen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -73,7 +73,7 @@ class DosenController extends Controller
         $request->validate([
             'nama_dosen' => 'required|string|max:255',
             'alamat_dosen' => 'required|string|max:255',
-            'no_telp' => 'required|string|max:20|unique:dosens,no_telp,' . $dosen->id,
+            'no_telp' => 'required|string|max:20|unique:dosens,no_telp,' . $dosen->id . '|regex:/^[0-9]+$/', // Pastikan nomor telepon hanya terdiri dari angka dan tidak negatif
             'foto_dosen' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
